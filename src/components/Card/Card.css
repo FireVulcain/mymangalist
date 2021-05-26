@@ -1,0 +1,22 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 185px);
+    gap: 28px 30px;
+}
+
+.card-container .card {
+    display: grid;
+    grid-template-rows: -webkit-min-content auto;
+    grid-template-rows: min-content auto;
+    position: relative;
+    width: 185px;
+}
+.card-container .card > a {
+    height: 265px;
+}
+.card-container .card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
