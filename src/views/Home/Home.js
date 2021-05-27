@@ -23,7 +23,6 @@ export const Home = () => {
                 },
             })
             .then((res) => {
-                console.log(res.data.data);
                 setManhwa(res.data.data.manhwa.media);
                 setPopular(res.data.data.popular.media);
                 setTop(res.data.data.top.media);
@@ -36,22 +35,38 @@ export const Home = () => {
             <Link className="title-link" to="/trending">
                 <h2>Trending Now</h2> <span>View all</span>
             </Link>
-            <Card arrayData={trending} />
+            <div className="card-container">
+                {trending.map((data, key) => {
+                    return <Card data={data} key={key} />;
+                })}
+            </div>
 
             <Link className="title-link" to="/popular">
                 <h2>All time popular</h2> <span>View all</span>
             </Link>
-            <Card arrayData={popular} />
+            <div className="card-container">
+                {popular.map((data, key) => {
+                    return <Card data={data} key={key} />;
+                })}
+            </div>
 
             <Link className="title-link" to="/top-manhwa">
                 <h2>Popular manhwa</h2> <span>View all</span>
             </Link>
-            <Card arrayData={manhwa} />
+            <div className="card-container">
+                {manhwa.map((data, key) => {
+                    return <Card data={data} key={key} />;
+                })}
+            </div>
 
             <Link className="title-link" to="top-100">
                 <h2>Top 100</h2> <span>View all</span>
             </Link>
-            <Card arrayData={top} />
+            <div className="card-container">
+                {top.map((data, key) => {
+                    return <Card data={data} key={key} />;
+                })}
+            </div>
         </div>
     );
 };
