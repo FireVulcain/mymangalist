@@ -1,22 +1,15 @@
-import React, { useState, useRef, useCallback } from "react";
-import { Card } from "../../components/Card/Card";
-import { useInfiniteLoad } from "../../hooks/useInfiniteLoad";
+import React, { useCallback, useRef, useState } from "react";
+import { Card } from "../components/Card/Card";
+import { useSearchInfiniteLoad } from "../hooks/useSearchInfiniteLoad";
 
-import { QUERY_SORT } from "../../query/query";
+import { QUERY_SEARCH } from "../query/query";
 
-export const Trending = () => {
+export const SearchResult = ({ variables }) => {
     const [page, setPage] = useState(1);
 
-    const observer = useRef();
+    const { loading, data, hasMore } = useSearchInfiniteLoad(page, variables, QUERY_SEARCH);
 
-    const { loading, data, hasMore } = useInfiniteLoad(
-        page,
-        {
-            sort: ["TRENDING_DESC", "POPULARITY_DESC"],
-            type: "MANGA",
-        },
-        QUERY_SORT
-    );
+    const observer = useRef();
 
     const lastDataElementRef = useCallback(
         (node) => {
@@ -36,7 +29,7 @@ export const Trending = () => {
 
     return (
         <div className="container">
-            <h2>Trending manga</h2>
+            <h2>Search result</h2>
             <div className="card-container">
                 {data.map((d, key) => {
                     if (data.length === key + 1) {

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../../axios";
+import { Search } from "../../components/Search/Search";
 import { QUERY_HOME } from "../../query/query";
 import { Card } from "./../../components/Card/Card";
+import { SearchResult } from "./../SearchResult";
 
 import "./Home.css";
 
@@ -11,6 +13,9 @@ export const Home = () => {
     const [popular, setPopular] = useState([]);
     const [top, setTop] = useState([]);
     const [trending, setTrending] = useState([]);
+
+    const [isSearch, setIsSearch] = useState(false);
+    const [variables, setVariables] = useState({});
 
     useEffect(() => {
         axios
@@ -32,41 +37,49 @@ export const Home = () => {
 
     return (
         <div className="container">
-            <Link className="title-link" to="/trending">
-                <h2>Trending Now</h2> <span>View all</span>
-            </Link>
-            <div className="card-container">
-                {trending.map((data, key) => {
-                    return <Card data={data} key={key} />;
-                })}
-            </div>
+            <Search setIsSearch={setIsSearch} setVariables={setVariables} />
 
-            <Link className="title-link" to="/popular">
-                <h2>All time popular</h2> <span>View all</span>
-            </Link>
-            <div className="card-container">
-                {popular.map((data, key) => {
-                    return <Card data={data} key={key} />;
-                })}
-            </div>
+            {isSearch ? (
+                <SearchResult variables={variables} />
+            ) : (
+                <>
+                    <Link className="title-link" to="/trending">
+                        <h2>Trending Now</h2> <span>View all</span>
+                    </Link>
+                    <div className="card-container">
+                        {trending.map((data, key) => {
+                            return <Card data={data} key={key} />;
+                        })}
+                    </div>
 
-            <Link className="title-link" to="/top-manhwa">
-                <h2>Popular manhwa</h2> <span>View all</span>
-            </Link>
-            <div className="card-container">
-                {manhwa.map((data, key) => {
-                    return <Card data={data} key={key} />;
-                })}
-            </div>
+                    <Link className="title-link" to="/popular">
+                        <h2>All time popular</h2> <span>View all</span>
+                    </Link>
+                    <div className="card-container">
+                        {popular.map((data, key) => {
+                            return <Card data={data} key={key} />;
+                        })}
+                    </div>
 
-            <Link className="title-link" to="top-100">
-                <h2>Top 100</h2> <span>View all</span>
-            </Link>
-            <div className="card-container">
-                {top.map((data, key) => {
-                    return <Card data={data} key={key} />;
-                })}
-            </div>
+                    <Link className="title-link" to="/top-manhwa">
+                        <h2>Popular manhwa</h2> <span>View all</span>
+                    </Link>
+                    <div className="card-container">
+                        {manhwa.map((data, key) => {
+                            return <Card data={data} key={key} />;
+                        })}
+                    </div>
+
+                    <Link className="title-link" to="top-100">
+                        <h2>Top 100</h2> <span>View all</span>
+                    </Link>
+                    <div className="card-container">
+                        {top.map((data, key) => {
+                            return <Card data={data} key={key} />;
+                        })}
+                    </div>
+                </>
+            )}
         </div>
     );
 };

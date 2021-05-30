@@ -2,12 +2,14 @@ import React, { useState, useRef, useCallback } from "react";
 import { Card } from "../../components/Card/Card";
 import { useInfiniteLoad } from "../../hooks/useInfiniteLoad";
 
+import { QUERY_SORT } from "../../query/query";
+
 export const Popular = () => {
     const [page, setPage] = useState(1);
 
     const observer = useRef();
 
-    const { loading, data, hasMore } = useInfiniteLoad(page, { sort: "POPULARITY_DESC", type: "MANGA" });
+    const { loading, data, hasMore } = useInfiniteLoad(page, { sort: "POPULARITY_DESC", type: "MANGA" }, QUERY_SORT);
 
     const lastDataElementRef = useCallback(
         (node) => {

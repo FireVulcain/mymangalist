@@ -2,14 +2,20 @@ import React, { useState, useRef, useCallback } from "react";
 import { Card } from "../../components/Card/Card";
 import { useInfiniteLoad } from "../../hooks/useInfiniteLoad";
 
+import { QUERY_SORT } from "../../query/query";
+
 export const Manhwa = () => {
     const [page, setPage] = useState(1);
 
-    const { loading, data, hasMore } = useInfiniteLoad(page, {
-        countryOfOrigin: "KR",
-        sort: "SCORE_DESC",
-        type: "MANGA",
-    });
+    const { loading, data, hasMore } = useInfiniteLoad(
+        page,
+        {
+            countryOfOrigin: "KR",
+            sort: "SCORE_DESC",
+            type: "MANGA",
+        },
+        QUERY_SORT
+    );
 
     const observer = useRef();
 

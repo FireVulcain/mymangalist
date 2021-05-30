@@ -4,6 +4,16 @@
     justify-content: space-between;
     color: rgb(var(--color-text-light));
     text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+.title-link:not(:first-of-type) {
+    margin-top: 40px;
+}
+.title-link h2 {
+    font-size: 1em;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
 }
 .title-link:hover {
     color: rgb(var(--color-text-lighter));

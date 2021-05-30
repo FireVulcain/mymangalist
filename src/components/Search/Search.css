@@ -1,0 +1,49 @@
+.search-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1em;
+    margin-bottom: 40px;
+}
+
+.filter-select > div {
+    background: rgb(21, 31, 46);
+    border: none;
+    cursor: pointer;
+}
+.filter-select > div > div > span {
+    display: none;
+}
+
+.filter-container > p {
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
+.filter-container input[type="text"] {
+    background: rgb(21, 31, 46);
+    border: none;
+    outline: none;
+    color: rgb(139, 160, 178);
+    border-radius: 4px;
+    padding: 11px;
+}
+
+.filter-container .tag {
+    color: rgb(173, 192, 210);
+    background: rgb(30, 42, 56);
+    border-radius: 6px;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 0.9em;
+    padding: 3px 5px;
+    margin-right: 5px;
+}
+
+.input-search-container {
+    position: relative;
+}
+.input-search-container .input-search-cleaner {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translatey(-50%);
+}
