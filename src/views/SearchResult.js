@@ -7,7 +7,7 @@ import { QUERY_SEARCH } from "../query/query";
 export const SearchResult = ({ variables }) => {
     const [page, setPage] = useState(1);
 
-    const { loading, data, hasMore } = useSearchInfiniteLoad(page, variables, QUERY_SEARCH);
+    const { loading, data, hasMore } = useSearchInfiniteLoad(page, setPage, variables, QUERY_SEARCH);
 
     const observer = useRef();
 
