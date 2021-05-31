@@ -254,4 +254,8 @@ query($page:Int=1 $id:Int $type:MediaType $isAdult:Boolean=false $search:String 
     }
 }`;
 
-export { QUERY_HOME, QUERY_MANGA, QUERY_SORT, QUERY_GENRES, QUERY_SEARCH };
+const QUERY_SINGLE = `
+query($mediaId:Int){Media(id:$mediaId){id title{userPreferred}coverImage{large}bannerImage type status(version:2)episodes chapters volumes isFavourite mediaListEntry{id mediaId status score advancedScores progress progressVolumes repeat priority private hiddenFromStatusLists customLists notes updatedAt startedAt{year month day}completedAt{year month day}user{id name}}}}
+`;
+
+export { QUERY_HOME, QUERY_MANGA, QUERY_SORT, QUERY_GENRES, QUERY_SEARCH, QUERY_SINGLE };
